@@ -1,0 +1,12 @@
+applications:
+- host: demo2
+  disk: 512M
+  name: demo2
+  path: ./WebContent/
+  domain: baudelaine.mybluemix.net
+  mem: 256M
+  instances: 1
+  services:
+  - db0
+  - sms0
+

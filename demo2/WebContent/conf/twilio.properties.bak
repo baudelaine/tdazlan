@@ -1,0 +1,3 @@
+TWILIO_ACCOUNT_SID="<the 34 character Account identifier (starting with 'AC'). This can be found on your Twilio dashboard page.>"
+TWILIO_AUTH_TOKEN="<the 32 character AuthToken. This can be found on your Twilio dashboard page.>"
+TWILIO_PHONES="<sms-enabled number commas separated list. This can be found on your Twilio numbers page.>"

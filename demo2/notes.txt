@@ -1,0 +1,2 @@
+// create Twilio service
+cf cups sms1 -p '{"url":"https://api.twilio.com","accountSID":"AC08530a72fd8fdea46400037545033240","authToken":"36bc9b67b776da53fd4e3ab119d9741f","phones":"+1 844-334-6013"}'
