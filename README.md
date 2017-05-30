@@ -55,8 +55,24 @@ cf domains
 
 //Now we are ready to deploy both demo1 and demo2 applications
 
-//change to demo1 directory
+//Change to demo1 directory
 cd demo1
+
+//Now edit manifest.yml and check key value pairs
+//which should match this:
+applications:
+- host: demo1
+  disk: 256M
+  name: demo1
+  path: ./WebContent
+  domain: tdazlan.mybluemix.net
+  mem: 256M
+  instances: 1
+  services:
+- db0
+
+//Then deploy demo1 to Bluemix
+cf p
 
 
 
