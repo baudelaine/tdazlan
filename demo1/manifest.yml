@@ -8,8 +8,3 @@ applications:
   instances: 1
   services:
   - db0
-<<<<<<< HEAD
-=======
-  
->>>>>>> 8044c18e44e04ad9f215cc920a3c2563e0ca7786
-
