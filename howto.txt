@@ -6,8 +6,14 @@ https://docs.cloudfoundry.org/cf-cli/install-go-cli.html
 //Install Git command line from here:
 https://git-scm.com/downloads
 
-//Connect to Bluemix (Dallas)
+//Connect to Bluemix (US)
 cf l -a https://api.ng.bluemix.net -u <userid> -p <password> --skip-ssl-validation -s <spave> -o <org which is usually the same as userid>
+//or
+//Connect to Bluemix (GB)
+cf l -a https://api.eu-gb.bluemix.net -u <userid> -p <password> --skip-ssl-validation -s <spave> -o <org which is usually the same as userid>
+//or
+//Connect to Bluemix (DE)
+cf l -a https://api.eu-de.bluemix.net -u <userid> -p <password> --skip-ssl-validation -s <spave> -o <org which is usually the same as userid>
 
 //Create cloudantNoSQLDB service
 //cf cs <service> <plan> <service_instance>
@@ -28,7 +34,7 @@ cf service-key db0 user0
 //Now before create Twilio service instance, sign in https://www.twilio.com.
 //Get Account_SID and a Auth_Token
 //Add funds (20$ minimum)
-//Buy a sms phone number (1$ for one month) located in Dallas: +1 (469) NNN-NNNN
+//Buy a sms enable phone number (1$ for one month) located in Dallas: +1 (469) NNN-NNNN
 
 //Then come back to cf cli and create Twilio service
 //cf cups <service_instance> -p <parameters in json format>
@@ -37,7 +43,7 @@ cf cups sms0 -p '{"url":"https://api.twilio.com","accountSID":"AC...","authToken
 //Check that both services are created
 cf s
 
-//Now download demo1 and demo2 code from github
+//Now download demo1 and demo2 code from github to your local machine
 git clone https://github.com/baudelaine/tdazlan.git
 
 //Once cloning has finished change to local copy directory
@@ -49,6 +55,11 @@ cf orgs
 //Then create the subdomain
 //cf create-domain <org> <subdomain> 
 cf create-domain <org> tdazlan.mybluemix.net
+//or if in GB
+cf create-domain <org> tdazlan.eu-gb.mybluemix.net
+//or if in DE
+cf create-domain <org> tdazlan.eu-de.mybluemix.net
+
 //check domain exists
 cf domains
 
@@ -60,6 +71,8 @@ cd demo1
 //Now edit manifest.yml and check key value pairs:
 //host and name value has to be set to demo1
 //domain value has to be set to tdazlan.mybluemix.net
+//or tdazlan.eu-gb.mybluemix.net
+//or tdazlan.eu-de.mybluemix.net
 //services to bind to demo1 has to be set to db0
 
 //Then deploy demo1 to Bluemix
@@ -77,6 +90,8 @@ cd ../demo2
 //Now edit manifest.yml and check key value pairs:
 //host and name value has to be set to demo2
 //domain value has to be set to tdazlan.mybluemix.net
+//or tdazlan.eu-gb.mybluemix.net
+//or tdazlan.eu-de.mybluemix.net
 //services to bind to demo1 has to be set to db0 and sms0
 
 //Then deploy demo2 to Bluemix
@@ -87,9 +102,6 @@ cf a
 
 //Copy urls columns content. It should be demo2.tdazlan.mybluemix.net.
 //Paste it in a Web brower and check demo2 is running by downloading contacts and sending a sms
-
-
-
 
 
 //Cleaning Bluemix space
@@ -106,6 +118,10 @@ cf ds db0 -f
 cf d demo2 -f
 cf d demo1 -f
 cf delete-domain tdazlan.mybluemix.net -f
+//or
+cf delete-domain tdazlan.eu-gb.mybluemix.net -f
+//or
+cf delete-domain tdazlan.eu-de.mybluemix.net -f
 
 
 
