@@ -1,10 +1,9 @@
-# tdazlan
-tdazlan bluemix demos
+# Howto deploy and run tdazlan bluemix demos #
 
-Install the cf CLI from here:
+//Install the cf CLI from here:
 https://docs.cloudfoundry.org/cf-cli/install-go-cli.html
 
-Install Git command line from here:
+//Install Git command line from here:
 https://git-scm.com/downloads
 
 //Connect to Bluemix (Dallas)
@@ -33,7 +32,7 @@ cf service-key db0 user0
 
 //Then come back to cf cli and create Twilio service
 //cf cups <service_instance> -p <parameters in json format>
-cf cups sms0 -p '{"url":"https://api.twilio.com","accountSID":"AC...","authToken":"...","phones":"+1 469-NNN-NNNN"}'
+cf cups sms0 -p '{"url":"https://api.twilio.com","accountSID":"AC...","authToken":"...","phone":"+1 469-NNN-NNNN"}'
 
 //Check that both services are created
 cf s
