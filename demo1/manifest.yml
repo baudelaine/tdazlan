@@ -8,5 +8,4 @@ applications:
   instances: 1
   services:
   - db0
-  - sms0
 

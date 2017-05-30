@@ -31,7 +31,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ContextListener implements ServletContextListener {
 
 	InitialContext ic;
-	String vcapFile = "/js/vcap.json";
 	Database db = null;
 	SMSFactory smsFactory = new SMSFactory();
 	List<Contact> contacts = new ArrayList<Contact>();
@@ -46,33 +45,20 @@ public class ContextListener implements ServletContextListener {
 	/**
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
-    @SuppressWarnings("resource")
-	public void contextInitialized(ServletContextEvent arg0)  { 
+    public void contextInitialized(ServletContextEvent arg0)  { 
          // TODO Auto-generated method stub
        	try {
     			ic = new InitialContext();
     			arg0.getServletContext().setAttribute("ic", ic);
     			System.out.println("Context has been initialized...");
     			
-    			BufferedReader br = new BufferedReader(new FileReader(arg0.getServletContext().getRealPath(vcapFile)));
     			String json = "";
     			
-    			if(br != null){
-    				while((json = br.readLine()) != null){
-    					db = initDB(json);
-    					smsFactory = initSMSFactory(json);
-    				}
-    			}
-    			
-    			if (db == null) {
-    				json = System.getenv("VCAP_SERVICES");
-    				db = initDB(json);
-    			}
+				json = System.getenv("VCAP_SERVICES");
+				db = initDB(json);
 
-    			if (smsFactory == null) {
-    				json = System.getenv("VCAP_SERVICES");
-    				smsFactory = initSMSFactory(json);
-    			}
+				json = System.getenv("VCAP_SERVICES");
+				smsFactory = initSMSFactory(json);
     			
     			if (smsFactory == null) {
     				// Still null so switch in Dummy mode
@@ -86,7 +72,7 @@ public class ContextListener implements ServletContextListener {
 				arg0.getServletContext().setAttribute("contacts", contacts);
 
     			
-    		} catch (NamingException | IOException e) {
+    		} catch (NamingException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}    	
@@ -191,7 +177,6 @@ public class ContextListener implements ServletContextListener {
 				}
 			}
 			
-			
 			CloudantClient client = ClientBuilder.url(new URL(url))
 			        .username(username)
 			        .password(password)
@@ -199,22 +184,6 @@ public class ContextListener implements ServletContextListener {
 		
 			System.out.println("Server Version: " + client.serverVersion());
 			
-			// Get a List of all the databases this Cloudant account
-//			List<String> databases = client.getAllDbs();
-//			System.out.println("All my databases : ");
-//			for ( String db : databases ) {
-//				// Delete a database if already exists.
-//				if(db.equalsIgnoreCase(dbname)){
-//					//client.deleteDB(dbname);
-//					System.out.println("Deleting database : " + dbname);
-//				}
-//			}
-			
-//			client.createDB(dbname);
-			
-			// Get a Database instance to interact with, but don't create it if it doesn't already exist
-//			db = client.database(dbname, false);
-
 			// Get a Database instance to interact with, and create it if it doesn't already exist
 			db = client.database(dbname, true);
 			
