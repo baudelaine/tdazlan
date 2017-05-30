@@ -58,23 +58,19 @@ cf domains
 //Change to demo1 directory
 cd demo1
 
-//Now edit manifest.yml and check key value pairs
-//which should match this:
-applications:
-- host: demo1
-  disk: 256M
-  name: demo1
-  path: ./WebContent
-  domain: tdazlan.mybluemix.net
-  mem: 256M
-  instances: 1
-  services:
-- db0
+//Now edit manifest.yml and check key value pairs:
+//host and name value has to be set to demo1
+//domain value has to be set to tdazlan.mybluemix.net
+//services to bind to demo1 has to be set to db0
 
 //Then deploy demo1 to Bluemix
 cf p
 
+//Once staging has completed check demo1 is running:
+cf a
 
+//Copy urls columns content. It should be demo1.tdazlan.mybluemix.net.
+//Paste it in a Web brower and check demo1 is ruuning
 
 
 
