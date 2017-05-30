@@ -72,7 +72,7 @@ cf a
 //Copy urls columns content. It should be demo1.tdazlan.mybluemix.net.
 //Paste it in a Web brower and check demo1 is ruuning
 
-
+//
 
 
 
