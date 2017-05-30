@@ -105,6 +105,7 @@ cf ds db0 -f
 //Delete applications
 cf d demo2 -f
 cf d demo1 -f
+cf delete-domain tdazlan.mybluemix.net -f
 
 
 
