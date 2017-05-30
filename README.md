@@ -35,7 +35,34 @@ cf service-key db0 user0
 //cf cups <service_instance> -p <parameters in json format>
 cf cups sms0 -p '{"url":"https://api.twilio.com","accountSID":"AC...","authToken":"...","phones":"+1 469-NNN-NNNN"}'
 
+//Check that both services are created
+cf s
+
+//Now download demo1 and demo2 code from github
 git clone https://github.com/baudelaine/tdazlan.git
 
+//Once cloning has finished change to local copy directory
 cd tdazlan/
+
+//If not already done, create a mybluemix.net subdomain in your org
+//First list orgs to get yours
+cf orgs
+//Then create the subdomain
+//cf create-domain <org> <subdomain> 
+cf create-domain <org> tdazlan.mybluemix.net
+//check domain exists
+cf domains
+
+//Now we are ready to deploy both demo1 and demo2 applications
+
+
+
+
+
+
+
+
+
+
+
 
